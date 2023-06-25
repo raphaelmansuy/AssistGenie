@@ -8,12 +8,12 @@ export default function Chat() {
   return (
     <div className="stretch mx-auto flex w-full max-w-md flex-col py-24">
       {messages.length > 0
-        ? messages.map(m => (
-          <div key={m.id} className="whitespace-pre-wrap">
-            {m.role === 'user' ? 'User: ' : 'AI: '}
-            {m.content}
-          </div>
-        ))
+        ? messages.map((m) => (
+            <div key={m.id} className="whitespace-pre-wrap">
+              {m.role === 'user' ? 'User: ' : 'AI: '}
+              {m.content}
+            </div>
+          ))
         : null}
 
       <form onSubmit={handleSubmit}>
