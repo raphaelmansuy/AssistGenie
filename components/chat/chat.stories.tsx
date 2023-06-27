@@ -1,4 +1,4 @@
-import Chat from '@/components/components/chat'
+import Chat from '@/components/chat'
 
 export default {
   title: 'components/chat/Chat',
