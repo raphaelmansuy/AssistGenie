@@ -2,12 +2,9 @@ import 'styles/globals.css'
 
 import { Inter } from 'next/font/google'
 
-
 const inter = Inter({
   preload: true,
-  subsets: [
-    'latin',
-  ]
+  subsets: ['latin'],
 })
 
 const interClassName = inter.className

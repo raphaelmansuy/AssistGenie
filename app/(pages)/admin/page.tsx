@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-"use client"
+'use client'
 
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
@@ -42,7 +42,6 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-
 export default function Admin() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
@@ -58,7 +57,11 @@ export default function Admin() {
       */}
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
+          <Dialog
+            as="div"
+            className="relative z-50 lg:hidden"
+            onClose={setSidebarOpen}
+          >
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -92,9 +95,16 @@ export default function Admin() {
                     leaveTo="opacity-0"
                   >
                     <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
-                      <button type="button" className="-m-2.5 p-2.5" onClick={() => setSidebarOpen(false)}>
+                      <button
+                        type="button"
+                        className="-m-2.5 p-2.5"
+                        onClick={() => setSidebarOpen(false)}
+                      >
                         <span className="sr-only">Close sidebar</span>
-                        <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                        <XMarkIcon
+                          className="h-6 w-6 text-white"
+                          aria-hidden="true"
+                        />
                       </button>
                     </div>
                   </Transition.Child>
@@ -124,7 +134,9 @@ export default function Admin() {
                                 >
                                   <item.icon
                                     className={classNames(
-                                      item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+                                      item.current
+                                        ? 'text-indigo-600'
+                                        : 'text-gray-400 group-hover:text-indigo-600',
                                       'h-6 w-6 shrink-0'
                                     )}
                                     aria-hidden="true"
@@ -136,7 +148,9 @@ export default function Admin() {
                           </ul>
                         </li>
                         <li>
-                          <div className="text-xs font-semibold leading-6 text-gray-400">Your teams</div>
+                          <div className="text-xs font-semibold leading-6 text-gray-400">
+                            Your teams
+                          </div>
                           <ul role="list" className="-mx-2 mt-2 space-y-1">
                             {teams.map((team) => (
                               <li key={team.name}>
@@ -214,7 +228,9 @@ export default function Admin() {
                         >
                           <item.icon
                             className={classNames(
-                              item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+                              item.current
+                                ? 'text-indigo-600'
+                                : 'text-gray-400 group-hover:text-indigo-600',
                               'h-6 w-6 shrink-0'
                             )}
                             aria-hidden="true"
@@ -226,7 +242,9 @@ export default function Admin() {
                   </ul>
                 </li>
                 <li>
-                  <div className="text-xs font-semibold leading-6 text-gray-400">Your teams</div>
+                  <div className="text-xs font-semibold leading-6 text-gray-400">
+                    Your teams
+                  </div>
                   <ul role="list" className="-mx-2 mt-2 space-y-1">
                     {teams.map((team) => (
                       <li key={team.name}>
@@ -285,7 +303,10 @@ export default function Admin() {
               </button>
 
               {/* Separator */}
-              <div className="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true" />
+              <div
+                className="h-6 w-px bg-gray-200 lg:hidden"
+                aria-hidden="true"
+              />
 
               <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
                 <form className="relative flex flex-1" action="#" method="GET">
@@ -305,13 +326,19 @@ export default function Admin() {
                   />
                 </form>
                 <div className="flex items-center gap-x-4 lg:gap-x-6">
-                  <button type="button" className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
+                  <button
+                    type="button"
+                    className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
+                  >
                     <span className="sr-only">View notifications</span>
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
 
                   {/* Separator */}
-                  <div className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200" aria-hidden="true" />
+                  <div
+                    className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
+                    aria-hidden="true"
+                  />
 
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative">
@@ -325,10 +352,16 @@ export default function Admin() {
                         alt=""
                       />
                       <span className="hidden lg:flex lg:items-center">
-                        <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
+                        <span
+                          className="ml-4 text-sm font-semibold leading-6 text-gray-900"
+                          aria-hidden="true"
+                        >
                           Tom Cook
                         </span>
-                        <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+                        <ChevronDownIcon
+                          className="ml-2 h-5 w-5 text-gray-400"
+                          aria-hidden="true"
+                        />
                       </span>
                     </Menu.Button>
                     <Transition
@@ -365,11 +398,12 @@ export default function Admin() {
           </div>
 
           <main className="py-10">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">{/* Your content */}</div>
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              {/* Your content */}
+            </div>
           </main>
         </div>
       </div>
     </>
   )
 }
-
