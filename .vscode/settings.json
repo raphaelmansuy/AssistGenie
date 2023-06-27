@@ -1,4 +1,9 @@
 {
   "typescript.format.semicolons": "remove",
-  "javascript.format.semicolons": "remove"
+  "javascript.format.semicolons": "remove",
+  "python.envFile": "${workspaceFolder}/.databricks/.databricks.env",
+  "databricks.python.envFile": "${workspaceFolder}/.env",
+  "files.watcherExclude": {
+    "**/target": true
+  }
 }

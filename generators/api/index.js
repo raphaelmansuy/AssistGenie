@@ -10,8 +10,9 @@ module.exports = {
   actions: [
     {
       type: 'add',
-      path: 'app/api/v1/{{lowerCase name}}/route.ts',
+      path: 'app/api/v1/{{dashCase name}}/route.ts',
       templateFile: 'generators/api/route.ts.hbs',
+      skipIfExists: true,
     },
   ],
 }

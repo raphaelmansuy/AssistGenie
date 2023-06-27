@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 
-import Hello from '@/components/Hello'
+import Hello from '@/components/hello'
 
 describe('Hello', () => {
   it('should render without crashing', () => {

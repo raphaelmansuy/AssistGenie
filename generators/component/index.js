@@ -10,8 +10,9 @@ module.exports = {
   actions: [
     {
       type: 'add',
-      path: 'components/{{properCase name}}.tsx',
+      path: 'components/{{dashCase name}}/index.tsx',
       templateFile: 'generators/component/Component.tsx.hbs',
+      skipIfExists: true,
     },
   ],
 }

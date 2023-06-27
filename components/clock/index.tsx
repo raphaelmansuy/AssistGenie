@@ -1,13 +1,13 @@
 import React from 'react'
 
-export type {{ properCase name }}Props = {
+export type ClockProps = {
 	title: string 
   text: string
 } & {
   children: React.ReactNode
 }
 
-export const {{ properCase name }}: React.FC<{{ properCase name }}Props> = ({ title = "Titre 1", text= "Lorem ipsum", children}) => {
+export const Clock: React.FC<ClockProps> = ({ title = "Titre 1", text= "Lorem ipsum", children}) => {
   return (
     <>
       <div className='max-w-sm rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800'>
@@ -45,4 +45,4 @@ export const {{ properCase name }}: React.FC<{{ properCase name }}Props> = ({ ti
   )
 }
 
-export default {{ properCase name }}
+export default Clock

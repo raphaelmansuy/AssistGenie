@@ -1,4 +1,4 @@
-import Page from '@/app/page'
+import Page from '@/app/(pages)/page'
 
 export default {
   title: 'app/Page',

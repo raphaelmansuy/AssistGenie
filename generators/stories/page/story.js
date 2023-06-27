@@ -12,7 +12,7 @@ module.exports = {
   actions: [
     {
       type: 'add',
-      path: 'stories/{{getFolder path}}/{{getName path}}.stories.tsx',
+      path: '{{getFolder path}}/{{getDirName path)}}.stories.tsx',
       templateFile: 'generators/stories/page/Page.stories.tsx.hbs',
     },
   ],

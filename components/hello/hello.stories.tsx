@@ -1,4 +1,4 @@
-import Hello from '@/components/Hello'
+import Hello from '@/components/hello'
 
 export default {
   title: 'components/Hello',
