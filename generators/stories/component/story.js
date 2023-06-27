@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   description: 'Component Story Generator',
@@ -10,8 +10,8 @@ module.exports = {
       rootPath: './components',
       itemType: 'file',
       excludeFilter: (nodePath) => {
-        return nodePath.includes('stories.tsx');
-      }
+        return nodePath.includes('stories.tsx')
+      },
     },
   ],
   actions: [

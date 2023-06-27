@@ -4,13 +4,9 @@ export default {
   title: 'components/chat/Chat',
   component: Chat,
   tags: ['autodocs'],
-  argTypes: {
-  },
+  argTypes: {},
 }
 
 export const ChatDefault = {
-  args: {
-  },
+  args: {},
 }
-
-

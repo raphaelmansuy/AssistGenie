@@ -2,12 +2,15 @@
 
 import { useChat } from 'ai/react'
 
-
-function Message(props: { message: string, role: string }) {
+function Message(props: { message: string; role: string }) {
   return (
     <>
       <div className="whitespace-pre-wrap text-sm">
-        {props.role === 'user' ? <span className='font-bold'>User: </span> : <span className='font-bold'>AI: </span>}
+        {props.role === 'user' ? (
+          <span className="font-bold">User: </span>
+        ) : (
+          <span className="font-bold">AI: </span>
+        )}
         {props.message}
       </div>
       <br />
@@ -17,18 +20,18 @@ function Message(props: { message: string, role: string }) {
 
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
-    api: "/api/v1/chat",
+    api: '/api/v1/chat',
   })
 
   return (
     <div className="stretch mx-auto flex w-full max-w-md flex-col py-24">
       {messages.length > 0
-        ? messages.map((m) => <Message key={m.id} message={m.content} role={m.role} />
-        )
+        ? messages.map((m) => (
+            <Message key={m.id} message={m.content} role={m.role} />
+          ))
         : null}
 
-      <div className="flex justify-center bg-slate-600">
-      </div>
+      <div className="flex justify-center bg-slate-600"></div>
 
       <form onSubmit={handleSubmit}>
         <input

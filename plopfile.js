@@ -27,8 +27,6 @@ function getDirName(path) {
   return split[split.length - 2]
 }
 
-
-
 module.exports = function (plop) {
   plop.setGenerator('storiesComponent', storyComponentGenerator)
   plop.setGenerator('storiesPage', storyPageGenerator)
@@ -53,41 +51,39 @@ module.exports = function (plop) {
    */
   plop.setHelper('getName', getName)
 
-
   /**
    * Get directory name from path
    * */
   plop.setHelper('getDirName', getDirName)
 
   /*  Eq helper
-    *  {{#eq value compareValue}}
-    *    // do something
-    * {{else}}
-    *  // do something else
-    * {{/eq}}
-    * 
+   *  {{#eq value compareValue}}
+   *    // do something
+   * {{else}}
+   *  // do something else
+   * {{/eq}}
+   *
    **/
   plop.setHelper('eq', function (value, compareValue) {
     return value === compareValue
   })
 
   /* Get component name from path
-    * {{getComponentName path}}
-    *
-    * */  
+   * {{getComponentName path}}
+   *
+   * */
   plop.setHelper('getComponentName', (path) => {
     const name = getName(path)
-    return name === 'index' ?  getDirName(path) : name    
+    return name === 'index' ? getDirName(path) : name
   })
 
-
   /*  Neq helper
-    *  {{#neq value compareValue}}
-    *    // do something
-    * {{else}}
-    *   // do something else
-    * {{/neq}}
-    * */
+   *  {{#neq value compareValue}}
+   *    // do something
+   * {{else}}
+   *   // do something else
+   * {{/neq}}
+   * */
 
   //#endregion  //*======== Handlebars Helper ===========
 

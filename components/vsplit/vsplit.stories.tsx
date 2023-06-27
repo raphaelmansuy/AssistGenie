@@ -4,11 +4,9 @@ export default {
   title: 'components/VSplit',
   component: VSplit,
   tags: ['autodocs'],
-  argTypes: {
-  },
+  argTypes: {},
 }
 
 export const VSplitDefault = {
-  args: {
-  },
+  args: {},
 }
