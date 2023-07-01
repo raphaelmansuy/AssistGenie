@@ -3,7 +3,12 @@ const { fontFamily } = require('tailwindcss/defaultTheme')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
-  content: ['app/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}'],
+  content: [
+    'app/**/*.{ts,tsx}',
+    'components/**/*.{ts,tsx}',
+    'ui/**/*.{ts,tsx}',
+    'content/**/*.{md,mdx}',
+  ],
   theme: {
     container: {
       center: true,
@@ -13,11 +18,14 @@ module.exports = {
       },
     },
     extend: {
+      borderRadius: {
+        lg: `var(--radius)`,
+        md: `calc(var(--radius) - 2px)`,
+        sm: 'calc(var(--radius) - 4px)',
+      },
       fontFamily: {
-        fontFamily: {
-          sans: ['var(--font-inter)'],
-          mono: ['var(--font-roboto-mono)'],
-        },
+        sans: ['var(--font-sans)', ...fontFamily.sans],
+        heading: ['var(--font-heading)', ...fontFamily.sans],
       },
       colors: {
         border: 'hsl(var(--border))',
