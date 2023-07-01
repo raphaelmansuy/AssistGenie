@@ -1,5 +1,4 @@
-
 export type TemplateProps = {
-  actionUrl: string,
-  productName: string,
+  actionUrl: string
+  productName: string
 }

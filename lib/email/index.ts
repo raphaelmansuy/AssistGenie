@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer"
+import nodemailer from 'nodemailer'
 
 export type Email = {
   displayName?: string
@@ -10,17 +10,17 @@ export type Email = {
 }
 
 export async function sendEmail(email: Email) {
-  const smtpPort = process.env.SMTP_PORT || "465"
-  const smtpHostName = process.env.SMTP_HOST || "mail.gandi.net"
-  const smtpUser = process.env.SMTP_USER || "your_username"
-  const smtpPassword = process.env.SMTP_PASSWORD || "your_password"
+  const smtpPort = process.env.SMTP_PORT || '465'
+  const smtpHostName = process.env.SMTP_HOST || 'mail.gandi.net'
+  const smtpUser = process.env.SMTP_USER || 'your_username'
+  const smtpPassword = process.env.SMTP_PASSWORD || 'your_password'
 
-  console.log("⚙️ smtpPort", smtpPort)
-  console.log("⚙️ smtpHostName", smtpHostName)
-  console.log("⚙️ smtpUser", smtpUser)
+  console.log('⚙️ smtpPort', smtpPort)
+  console.log('⚙️ smtpHostName', smtpHostName)
+  console.log('⚙️ smtpUser', smtpUser)
   // anonymize password before logging
-  const anonymizedPassword = smtpPassword.replace(/./g, "*")
-  console.log("⚙️ smtpPassword", anonymizedPassword)
+  const anonymizedPassword = smtpPassword.replace(/./g, '*')
+  console.log('⚙️ smtpPassword', anonymizedPassword)
 
   const transporter = nodemailer.createTransport({
     host: smtpHostName,
@@ -28,19 +28,19 @@ export async function sendEmail(email: Email) {
     secure: true,
     auth: {
       user: smtpUser,
-      pass: smtpPassword
-    }
+      pass: smtpPassword,
+    },
   })
 
   const info = await transporter.sendMail({
-    from: `"${email.displayName ?? ""} <${email.from}>`,
+    from: `"${email.displayName ?? ''} <${email.from}>`,
     to: email.to,
     subject: email.subject,
     text: email.text,
-    html: email.html
+    html: email.html,
   })
 
-  console.log("Message sent: %s", info.messageId)
+  console.log('Message sent: %s', info.messageId)
 }
 
 const MAX_RETRIES = 5
