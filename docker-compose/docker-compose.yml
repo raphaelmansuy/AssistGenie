@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  db:
+    # build a local image from the Dockerfile in the postgres directory
+    build: ./postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: saasapp
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
