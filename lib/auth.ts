@@ -60,19 +60,23 @@ export const authOptions: NextAuthOptions = {
                   subjectEmail: `Activate your ${siteConfig.name} subscription`,
                 }
 
+          const html = htmlTemplate({ 
+            actionUrl: url,
+            productName: siteConfig.name,
+          })
+
+          const text = textTemplate({
+            actionUrl: url,
+            productName: siteConfig.name,
+          })
+
           await sendEmailWithRetry(
             {
               from: provider.from as string,
               to: identifier,
               subject: subjectEmail,
-              html: htmlTemplate({
-                actionUrl: url,
-                productName: siteConfig.name,
-              }),
-              text: textTemplate({
-                actionUrl: url,
-                productName: siteConfig.name,
-              }),
+              html,
+              text,
             },
             3
           )
