@@ -46,3 +46,5 @@ next-env.d.ts
 
 .idea
 .DS_Store
+
+docker-compose/db-data
