@@ -1,7 +1,8 @@
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { NextAuthOptions } from 'next-auth'
 import EmailProvider from 'next-auth/providers/email'
 import GitHubProvider from 'next-auth/providers/github'
+import { PrismaClient } from '@prisma/client'
+import { PrismaAdapter } from '@auth/prisma-adapter'
 
 import activateTemplate from '@/lib/email/templates/html-activate-template'
 import signinTemplate from '@/lib/email/templates/html-signin-template'
@@ -18,7 +19,8 @@ export const authOptions: NextAuthOptions = {
   // huh any! I know.
   // This is a temporary fix for prisma client.
   // @see https://github.com/prisma/prisma/issues/16117
-  adapter: PrismaAdapter(db as any),
+
+  adapter: PrismaAdapter(db) as any,
   session: {
     strategy: 'jwt',
   },
@@ -60,7 +62,7 @@ export const authOptions: NextAuthOptions = {
                   subjectEmail: `Activate your ${siteConfig.name} subscription`,
                 }
 
-          const html = htmlTemplate({ 
+          const html = htmlTemplate({
             actionUrl: url,
             productName: siteConfig.name,
           })
