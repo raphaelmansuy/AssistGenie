@@ -35,7 +35,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
     EmailProvider({
-      from: env.SMTP_FROM || 'no-reply@pandassur.com',
+      from: env.MAIL_FROM,
       sendVerificationRequest: async ({ identifier, url, provider }) => {
         try {
           const user = await db.user.findUnique({
