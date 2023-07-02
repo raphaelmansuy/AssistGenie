@@ -27,6 +27,8 @@
   "include": [
     "next-env.d.ts",
     "next-auth.d.ts",
+    "@app/api/auth/[...nextauth].ts",
+    "**/*.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
