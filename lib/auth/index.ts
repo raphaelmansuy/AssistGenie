@@ -1,7 +1,6 @@
 import { NextAuthOptions } from 'next-auth'
 import EmailProvider from 'next-auth/providers/email'
 import GitHubProvider from 'next-auth/providers/github'
-import { PrismaClient } from '@prisma/client'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 
 import activateTemplate from '@/lib/email/templates/html-activate-template'
@@ -26,6 +25,9 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: '/login',
+    error: '/login',
+    signOut: '/logout',
+    newUser: '/signup',
   },
   providers: [
     GitHubProvider({
@@ -33,7 +35,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
     EmailProvider({
-      from: env.SMTP_FROM || 'no-reply@example.com',
+      from: env.SMTP_FROM || 'no-reply@pandassur.com',
       sendVerificationRequest: async ({ identifier, url, provider }) => {
         try {
           const user = await db.user.findUnique({
@@ -45,12 +47,10 @@ export const authOptions: NextAuthOptions = {
             },
           })
 
-          if (!user) {
-            throw new Error(`User not found for email: ${identifier}`)
-          }
+          const status = user && user.emailVerified ? 'sign_in' : 'activate'
 
           const { htmlTemplate, textTemplate, subjectEmail } =
-            user.emailVerified
+            status === 'sign_in'
               ? {
                   htmlTemplate: signinTemplate,
                   textTemplate: signinTextTemplate,
@@ -74,7 +74,7 @@ export const authOptions: NextAuthOptions = {
 
           await sendEmailWithRetry(
             {
-              from: provider.from as string,
+              from: env.MAIL_FROM,
               to: identifier,
               subject: subjectEmail,
               html,

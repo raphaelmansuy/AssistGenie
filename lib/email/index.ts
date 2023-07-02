@@ -1,4 +1,21 @@
 import nodemailer from 'nodemailer'
+import { SES, SendRawEmailCommand } from '@aws-sdk/client-ses'
+import { env } from '@/env.mjs'
+
+const ses = new SES({
+  apiVersion: '2010-12-01',
+  region: env.AWS_SES_REGION,
+  // set SES credentials
+  credentials: {
+    accessKeyId: env.AWS_SES_ACCESS_KEY_ID,
+    secretAccessKey: env.AWS_SES_SECRET_ACCESS_KEY,
+  },
+})
+
+// create Nodemailer SES transporter
+const transporter = nodemailer.createTransport({
+  SES: { ses, aws: { SendRawEmailCommand } },
+})
 
 export type Email = {
   displayName?: string
@@ -10,30 +27,10 @@ export type Email = {
 }
 
 export async function sendEmail(email: Email) {
-  const smtpPort = process.env.SMTP_PORT || '465'
-  const smtpHostName = process.env.SMTP_HOST || 'mail.gandi.net'
-  const smtpUser = process.env.SMTP_USER || 'your_username'
-  const smtpPassword = process.env.SMTP_PASSWORD || 'your_password'
-
-  console.log('⚙️ smtpPort', smtpPort)
-  console.log('⚙️ smtpHostName', smtpHostName)
-  console.log('⚙️ smtpUser', smtpUser)
-  // anonymize password before logging
-  const anonymizedPassword = smtpPassword.replace(/./g, '*')
-  console.log('⚙️ smtpPassword', anonymizedPassword)
-
-  const transporter = nodemailer.createTransport({
-    host: smtpHostName,
-    port: parseInt(smtpPort, 10),
-    secure: true,
-    auth: {
-      user: smtpUser,
-      pass: smtpPassword,
-    },
-  })
+  console.log('sending email')
 
   const info = await transporter.sendMail({
-    from: `"${email.displayName ?? ''} <${email.from}>`,
+    from: email.from,
     to: email.to,
     subject: email.subject,
     text: email.text,
@@ -48,8 +45,8 @@ const BASE_DELAY = 1000 // 1 second
 
 export const sendEmailWithRetry = async (email: Email, retryCount = 0) => {
   try {
+    console.dir(email, { depth: null })
     await sendEmail(email)
-    console.log(`emailSent`)
   } catch (error) {
     console.log(`🔥 error sending email (retry count: ${retryCount + 1})`)
     console.log(error)
