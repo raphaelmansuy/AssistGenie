@@ -4,6 +4,7 @@ This repository provides a NextJS template with integrated TailwindCSS, Typescri
 
 ## Getting Started
 
+
 To get started with this template, follow these steps:
 
 1. Clone this repository to your local machine.
