@@ -18,7 +18,8 @@
     "build-storybook": "storybook build",
     "plop": "plop",
     "prepare": "husky install",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "dbmigrate:production": "dotenv -e .env.production.local -- npx prisma migrate deploy "
   },
   "keywords": [],
   "author": "Raphaël MANSUY",
@@ -100,6 +101,7 @@
     "@types/react-dom": "^18.2.6",
     "@typescript-eslint/parser": "^5.60.0",
     "autoprefixer": "^10.4.14",
+    "dotenv-cli": "^7.2.1",
     "eslint": "^8.43.0",
     "eslint-config-next": "^13.4.7",
     "eslint-config-prettier": "^8.8.0",
