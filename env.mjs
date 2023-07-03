@@ -5,6 +5,7 @@ export const env = createEnv({
   server: {
     // This is optional because it's only used in development.
     // See https://next-auth.js.org/deployment.
+
     NEXTAUTH_URL: z.string().url().optional(),
     NEXTAUTH_SECRET: z.string().min(1),
     GITHUB_CLIENT_ID: z.string().min(1),
@@ -33,7 +34,7 @@ export const env = createEnv({
     STRIPE_API_KEY: process.env.STRIPE_API_KEY,
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
     STRIPE_PRO_MONTHLY_PLAN_ID: process.env.STRIPE_PRO_MONTHLY_PLAN_ID,
-    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    NEXT_PUBLIC_APP_URL:process.env.VERCEL_URL,        // process.env.NEXT_PUBLIC_APP_URL,
     AWS_SES_REGION:process.env.AWS_SES_REGION,
     AWS_SES_ACCESS_KEY_ID:process.env.AWS_SES_ACCESS_KEY_ID,
     AWS_SES_SECRET_ACCESS_KEY:process.env.AWS_SES_SECRET_ACCESS_KEY
