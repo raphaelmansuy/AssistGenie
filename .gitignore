@@ -48,3 +48,7 @@ next-env.d.ts
 .DS_Store
 
 docker-compose/db-data
+
+.env # local env files
+.env*.local
+.ev*.* 

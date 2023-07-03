@@ -42,3 +42,4 @@
 - [ ] Create a docker-compose.yml file for the project
   - [ ] Create a Dockerfile file for the project
   - [ ] Define the postgres database
+- [ ] Deploy to vercel
