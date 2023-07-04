@@ -6,22 +6,25 @@ type EnvVariable = {
 }
 
 export default function EnvPage() {
+
   const envVariables: EnvVariable[] = []
 
   for (const [name, value] of Object.entries(env)) {
-    if (name.startsWith('AWS')) {
+
+    if (name.startsWith("AWS")) {
       continue
     }
 
     envVariables.push({ name, value })
   }
 
+
   return (
-    <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
       <div className="px-4 py-6 sm:px-0">
-        <h1 className="text-3xl font-bold mb-6">Environment Variables</h1>
+        <h1 className="mb-6 text-3xl font-bold">Environment Variables</h1>
         <div className="overflow-x-auto">
-          <table className="table-auto w-full">
+          <table className="w-full table-auto">
             <thead>
               <tr>
                 <th className="px-4 py-2 text-left">Name</th>
@@ -42,3 +45,4 @@ export default function EnvPage() {
     </div>
   )
 }
+
