@@ -34,23 +34,19 @@ export async function POST(req: Request) {
     // Update the user stripe into in our database.
     // Since this is the initial subscription, we need to update
     // the subscription id and customer id.
-    /*   await db.user.update({
+    await db.user.update({
       where: {
         id: session?.metadata?.userId,
       },
       data: {
-        sessions: {
-          create: {
-            stripeSubscriptionId: subscriptionId,
-          }
-        },
+        stripeSubscriptionId: subscriptionId,
         stripeCustomerId: subscription.customer as string,
         stripePriceId: subscription.items.data[0].price.id,
         stripeCurrentPeriodEnd: new Date(
           subscription.current_period_end * 1000
         ),
       },
-    })*/
+    })
   }
 
   if (event.type === 'invoice.payment_succeeded') {
@@ -60,7 +56,7 @@ export async function POST(req: Request) {
     )
 
     // Update the price id and set the new period end.
-    /*await db.user.update({
+    await db.user.update({
       where: {
         stripeSubscriptionId: subscription.id,
       },
@@ -70,7 +66,7 @@ export async function POST(req: Request) {
           subscription.current_period_end * 1000
         ),
       },
-    })*/
+    })
   }
 
   return new Response(null, { status: 200 })
