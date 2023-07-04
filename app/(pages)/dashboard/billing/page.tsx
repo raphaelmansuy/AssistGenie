@@ -1,49 +1,48 @@
-import { redirect } from "next/navigation"
+import { redirect } from 'next/navigation'
 
-import { authOptions } from "@/lib/auth"
-import { getCurrentUser } from "@/lib/session"
-import { stripe } from "@/lib/stripe"
-import { getUserSubscriptionPlan } from "@/lib/subscription"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { authOptions } from '@/lib/auth'
+import { getCurrentUser } from '@/lib/session'
+import { stripe } from '@/lib/stripe'
+import { getUserSubscriptionPlan } from '@/lib/subscription'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { BillingForm } from "@/components/billing-form"
-import { DashboardHeader } from "@/components/header"
-import { Icons } from "@/components/icons"
-import { DashboardShell } from "@/components/shell"
-import { UserSubscriptionPlan } from "@/types"
+} from '@/components/ui/card'
+import { BillingForm } from '@/components/billing-form'
+import { DashboardHeader } from '@/components/header'
+import { Icons } from '@/components/icons'
+import { DashboardShell } from '@/components/shell'
+import { UserSubscriptionPlan } from '@/types'
 
 export const metadata = {
-  title: "Billing",
-  description: "Manage billing and your subscription plan.",
+  title: 'Billing',
+  description: 'Manage billing and your subscription plan.',
 }
 
 export default async function BillingPage() {
   const user = await getCurrentUser()
 
   if (!user) {
-    redirect(authOptions?.pages?.signIn || "/login")
+    redirect(authOptions?.pages?.signIn || '/login')
   }
 
-  const subscriptionPlan: UserSubscriptionPlan = await getUserSubscriptionPlan(user.id)
+  const subscriptionPlan: UserSubscriptionPlan = await getUserSubscriptionPlan(
+    user.id
+  )
 
   // If user has a pro plan, check cancel status on Stripe.
   let isCanceled = false
   if (subscriptionPlan.isPro && subscriptionPlan.stripeSubscriptionId) {
-
     const stripeSubscriptionId = subscriptionPlan.stripeSubscriptionId as string
-    const stripePlan = await stripe.subscriptions.retrieve(
-      stripeSubscriptionId
-    )
+    const stripePlan = await stripe.subscriptions.retrieve(stripeSubscriptionId)
 
     isCanceled = stripePlan.cancel_at_period_end
   }
- 
+
   return (
     <DashboardShell>
       <DashboardHeader
@@ -56,7 +55,7 @@ export default async function BillingPage() {
           <AlertTitle>This is a demo app.</AlertTitle>
           <AlertDescription>
             Taxonomy app is a demo app using a Stripe test environment. You can
-            find a list of test card numbers on the{" "}
+            find a list of test card numbers on the{' '}
             <a
               href="https://stripe.com/docs/testing#cards"
               target="_blank"

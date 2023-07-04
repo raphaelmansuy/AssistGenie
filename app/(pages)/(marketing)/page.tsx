@@ -1,17 +1,17 @@
-import Link from "next/link"
+import Link from 'next/link'
 
-import { env } from "@/env.mjs"
-import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { env } from '@/env.mjs'
+import { siteConfig } from '@/config/site'
+import { cn } from '@/lib/utils'
+import { buttonVariants } from '@/components/ui/button'
 
 async function getGitHubStars(): Promise<string | null> {
   try {
     const response = await fetch(
-      "https://api.github.com/repos/shadcn/taxonomy",
+      'https://api.github.com/repos/shadcn/taxonomy',
       {
         headers: {
-          Accept: "application/vnd.github+json",
+          Accept: 'application/vnd.github+json',
           Authorization: `Bearer ${env.GITHUB_ACCESS_TOKEN}`,
         },
         next: {
@@ -26,7 +26,7 @@ async function getGitHubStars(): Promise<string | null> {
 
     const json = await response.json()
 
-    return parseInt(json["stargazers_count"]).toLocaleString()
+    return parseInt(json['stargazers_count']).toLocaleString()
   } catch (error) {
     return null
   }
@@ -54,14 +54,14 @@ export default async function IndexPage() {
             everything. Follow along as we figure this out together.
           </p>
           <div className="space-x-4">
-            <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
+            <Link href="/login" className={cn(buttonVariants({ size: 'lg' }))}>
               Get Started
             </Link>
             <Link
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
-              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
+              className={cn(buttonVariants({ variant: 'outline', size: 'lg' }))}
             >
               GitHub
             </Link>
@@ -182,8 +182,8 @@ export default async function IndexPage() {
             Proudly Open Source
           </h2>
           <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            Taxonomy is open source and powered by open source software. <br />{" "}
-            The code is available on{" "}
+            Taxonomy is open source and powered by open source software. <br />{' '}
+            The code is available on{' '}
             <Link
               href={siteConfig.links.github}
               target="_blank"
@@ -192,7 +192,7 @@ export default async function IndexPage() {
             >
               GitHub
             </Link>
-            .{" "}
+            .{' '}
           </p>
           {stars && (
             <Link

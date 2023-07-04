@@ -1,13 +1,13 @@
-import { getServerSession } from "next-auth/next"
-import { z } from "zod"
+import { getServerSession } from 'next-auth/next'
+import { z } from 'zod'
 
-import { proPlan } from "@/config/subscriptions"
-import { authOptions } from "@/lib/auth"
-import { stripe } from "@/lib/stripe"
-import { getUserSubscriptionPlan } from "@/lib/subscription"
-import { absoluteUrl } from "@/lib/utils"
+import { proPlan } from '@/config/subscriptions'
+import { authOptions } from '@/lib/auth'
+import { stripe } from '@/lib/stripe'
+import { getUserSubscriptionPlan } from '@/lib/subscription'
+import { absoluteUrl } from '@/lib/utils'
 
-const billingUrl = absoluteUrl("/dashboard/billing")
+const billingUrl = absoluteUrl('/dashboard/billing')
 
 export async function GET(req: Request) {
   try {
@@ -22,7 +22,6 @@ export async function GET(req: Request) {
     // The user is on the pro plan.
     // Create a portal session to manage subscription.
     if (subscriptionPlan.isPro && subscriptionPlan.stripeCustomerId) {
-      
       const stripeSession = await stripe.billingPortal.sessions.create({
         customer: subscriptionPlan.stripeCustomerId as string,
         return_url: billingUrl,
@@ -36,9 +35,9 @@ export async function GET(req: Request) {
     const stripeSession = await stripe.checkout.sessions.create({
       success_url: billingUrl,
       cancel_url: billingUrl,
-      payment_method_types: ["card"],
-      mode: "subscription",
-      billing_address_collection: "auto",
+      payment_method_types: ['card'],
+      mode: 'subscription',
+      billing_address_collection: 'auto',
       customer_email: session.user.email,
       line_items: [
         {

@@ -1,12 +1,12 @@
-import Image from "next/image"
-import Link from "next/link"
-import { allPosts } from "contentlayer/generated"
-import { compareDesc } from "date-fns"
+import Image from 'next/image'
+import Link from 'next/link'
+import { allPosts } from 'contentlayer/generated'
+import { compareDesc } from 'date-fns'
 
-import { formatDate } from "@/lib/utils"
+import { formatDate } from '@/lib/utils'
 
 export const metadata = {
-  title: "Blog",
+  title: 'Blog',
 }
 
 export default async function BlogPage() {
