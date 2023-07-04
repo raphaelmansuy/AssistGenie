@@ -1,10 +1,10 @@
-"use client"
+'use client'
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-import { SidebarNavItem } from "types"
-import { cn } from "@/lib/utils"
+import { SidebarNavItem } from 'types'
+import { cn } from '@/lib/utils'
 
 export interface DocsSidebarNavProps {
   items: SidebarNavItem[]
@@ -16,7 +16,7 @@ export function DocsSidebarNav({ items }: DocsSidebarNavProps) {
   return items.length ? (
     <div className="w-full">
       {items.map((item, index) => (
-        <div key={index} className={cn("pb-8")}>
+        <div key={index} className={cn('pb-8')}>
           <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-medium">
             {item.title}
           </h4>
@@ -46,18 +46,21 @@ export function DocsSidebarNavItems({
             key={index}
             href={item.href}
             className={cn(
-              "flex w-full items-center rounded-md p-2 hover:underline",
+              'flex w-full items-center rounded-md p-2 hover:underline',
               {
-                "bg-muted": pathname === item.href,
+                'bg-muted': pathname === item.href,
               }
             )}
-            target={item.external ? "_blank" : ""}
-            rel={item.external ? "noreferrer" : ""}
+            target={item.external ? '_blank' : ''}
+            rel={item.external ? 'noreferrer' : ''}
           >
             {item.title}
           </Link>
         ) : (
-          <span key={index} className="flex w-full cursor-not-allowed items-center rounded-md p-2 opacity-60">
+          <span
+            key={index}
+            className="flex w-full cursor-not-allowed items-center rounded-md p-2 opacity-60"
+          >
             {item.title}
           </span>
         )
