@@ -51,5 +51,6 @@ docker-compose/db-data
 
 .env # local env files
 .env*.local
+.env.production
 
 .contentlayer/
