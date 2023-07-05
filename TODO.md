@@ -43,3 +43,4 @@
   - [ ] Create a Dockerfile file for the project
   - [ ] Define the postgres database
 - [ ] Deploy to vercel
+
