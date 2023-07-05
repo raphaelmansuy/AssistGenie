@@ -3,4 +3,4 @@
 
 pnpm test:pre
 pnpm lint
-pnpm format:write
+# pnpm format:write
