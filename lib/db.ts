@@ -1,6 +1,9 @@
 import { PrismaClient } from '@prisma/client'
 
-declare global {
+
+export const db = new PrismaClient()
+
+/*declare global {
   // eslint-disable-next-line no-var
   var cachedPrisma: PrismaClient
 }
@@ -16,3 +19,4 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 export const db = prisma
+*/

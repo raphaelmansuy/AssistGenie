@@ -34,26 +34,32 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   async function onSubmit(data: FormData) {
     setIsLoading(true)
 
-    const signInResult = await signIn('email', {
-      email: data.email.toLowerCase(),
-      redirect: false,
-      callbackUrl: searchParams?.get('from') || '/dashboard',
-    })
+    try {
+      const signInResult = await signIn('email', {
+        email: data.email.toLowerCase(),
+        redirect: false,
+        callbackUrl: searchParams?.get('from') || '/dashboard',
+      })
 
-    setIsLoading(false)
+      if (!signInResult?.ok) {
+        throw new Error('Sign in request failed.')
+      }
 
-    if (!signInResult?.ok) {
-      return toast({
+      toast({
+        title: 'Check your email',
+        description: 'We sent you a login link. Be sure to check your spam too.',
+      })
+    } catch (error) {
+      console.error(error)
+
+      toast({
         title: 'Something went wrong.',
-        description: 'Your sign in request failed. Please try again.',
+        description: error.message || 'Your sign in request failed. Please try again.',
         variant: 'destructive',
       })
+    } finally {
+      setIsLoading(false)
     }
-
-    return toast({
-      title: 'Check your email',
-      description: 'We sent you a login link. Be sure to check your spam too.',
-    })
   }
 
   return (
