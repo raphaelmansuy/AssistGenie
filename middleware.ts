@@ -8,7 +8,7 @@ export default withAuth(
     const isAuth = !!token
     const isAuthPage =
       req.nextUrl.pathname.startsWith("/login") ||
-      req.nextUrl.pathname.startsWith("/register")
+      req.nextUrl.pathname.startsWith("/register") 
 
     if (isAuthPage) {
       if (isAuth) {
@@ -42,5 +42,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/editor/:path*", "/login", "/register"],
+  matcher: ["/dashboard/:path*", "/editor/:path*", "/login", "/register", "/chat/:path*"],
 }
