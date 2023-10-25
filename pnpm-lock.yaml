@@ -9325,7 +9325,7 @@ packages:
       axios: 0.24.0
       buffer: 6.0.3
       cmake-js: 6.3.2
-      crypto-js: 4.1.1
+      crypto-js: 4.2.0
       mqtt: 4.3.7
       process: 0.11.10
       tar: 6.1.15
@@ -10507,8 +10507,8 @@ packages:
       randomfill: 1.0.4
     dev: true
 
-  /crypto-js@4.1.1:
-    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
+  /crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
     dev: false
 
   /crypto-random-string@2.0.0:
